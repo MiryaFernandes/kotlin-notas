@@ -5,37 +5,67 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 
+ lateinit var nomeEditText: EditText
+ lateinit var nota1EditText: EditText
+ lateinit var nota2EditText: EditText
  class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val calcular = findViewById<Button>(R.id.calcular)
-        val sair = findViewById<EditText>(R.id.sair)
+        val cancelar = findViewById(R.id.sair) as Button
+        val resultado = findViewById<TextView>(R.id.resultado)
 
         calcular.setOnClickListener{
 
-            val nota1 = findViewById<EditText>(R.id.nota1).text.toString().toInt()
-            val nota2 = findViewById<EditText>(R.id.nota2).text.toString().toInt()
-            val resultado = findViewById<EditText>(R.id.resultado)
+            nomeEditText = findViewById(R.id.nome)
+            nota1EditText = findViewById(R.id.nota1)
+            nota2EditText = findViewById(R.id.nota2)
 
-            val media = (nota1 + nota2) / 2
 
-            if (media >= 5){
-                resultado.text = "aprovado"
-                resultado.setTextColor(Color.GREEN)
-            } else {
+            val nota1 = nota1EditText.text.toString().toInt()
+            val nota2 = nota2EditText.text.toString().toInt()
 
-                resultado.text = "reprovado"
-                resultado.setTextColor(Color.RED)
-            }
+            val media = calcularMedia(nota1, nota2)
+            resultado.text = situacaoAluno(media)
 
-        sair.setOnClickListener{
+        cancelar.setOnClickListener{
 
             finish()
 
         }
+
+           // private fun calcularMedia(nota1: Int, nota2: Int) = (nota1 + nota2) / 2
+
+           // val calcularMedia = { nota1: Int, nota2: Int -> (nota1 + nota2) / 2}
+
+
+
+
+            fun validarCampos(): Boolean{
+
+                var noError = true
+                if(nomeEditText.text.isBlank()){
+                    nomeEditText.setError("digite seu nome!")
+                    noError = false
+                }
+
+                if(nota1EditText.text.isBlank()){
+                    nota1EditText.setError("digite a primeira nota!")
+                    noError = false
+                }
+
+                if(nota2EditText.text.isBlank()){
+                    nota2EditText.setError("digite a segunda nota!")
+                    noError = false
+                }
+
+                return noError
+
+            }
 
         }
     }

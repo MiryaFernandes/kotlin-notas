@@ -10,11 +10,19 @@
     android:gravity="center">
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="271dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:text="Situaçao do aluno"
-            android:textSize="32dp"
+            android:textColor="@color/black"
+            android:textSize="32dp" />
+
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="nome do aluno"
+            android:inputType="text"
             android:textColor="@color/black"/>
 
         <EditText
@@ -30,14 +38,6 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="Nota 2"
-            android:inputType="number"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:id="@+id/faltas"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:hint="faltas"
             android:inputType="number"
             android:textColor="@color/black"/>
 
